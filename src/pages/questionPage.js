@@ -8,9 +8,7 @@ import { createAnswerElement } from '../views/answerView.js';
 import { quizData } from '../data.js';
 
 export const initQuestionPage = () => {
-
   document
     .getElementById(NEXT_QUESTION_BUTTON_ID)
     .addEventListener('click', nextQuestion);
-}
-
+};
