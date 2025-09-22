@@ -1,0 +1,121 @@
+@mixin button {
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+
+  padding: 0.375rem 1.75rem;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: left;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition: 300ms background-color, 300ms color;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-info-700);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &.fullWidth {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.primary {
+  @include button;
+
+  color: var(--color-light-100);
+  background-color: var(--color-accent-500);
+  box-shadow: 0 4px 18px rgb(140 97 255 / 35%);
+
+  &:hover:enabled {
+    background-color: var(--color-accent-300);
+  }
+  &:active:enabled {
+    background-color: var(--color-accent-500);
+  }
+}
+
+.secondary {
+  @include button;
+
+  color: var(--color-text-primary);
+  background-color: var(--color-dark-300);
+  box-shadow: 0 4px 4px 0 rgb(77 86 96 / 13%);
+
+  &:hover:enabled {
+    background-color: var(--color-dark-100);
+  }
+  &:active:enabled {
+    background-color: var(--color-dark-500);
+  }
+}
+
+.tertiary {
+  @include button;
+
+  color: var(--color-accent-500);
+  background-color: transparent;
+  border: 1px solid var(--color-accent-700);
+
+  &:hover:enabled {
+    background-color: var(--color-accent-900);
+  }
+  &:active:enabled {
+    background-color: var(--color-accent-900);
+  }
+}
+
+.wrong {
+  @include button;
+
+  color: var(--color-danger-500);
+  background-color: transparent;
+  border: 1px solid var(--color-danger-500);
+
+  &:hover:enabled {
+    background-color: var(--color-danger-300);
+  }
+  &:active:enabled {
+    background-color: var(--color-danger-300);
+  }
+}
+
+.success {
+  @include button;
+
+  color: var(--color-success-500);
+  background-color: transparent;
+  border: 1px solid var(--color-success-500);
+
+  &:hover:enabled {
+    background-color: var(--color-success-300);
+    color: var(--color-success-900);
+  }
+
+  &:active:enabled {
+    background-color: var(--color-success-300);
+  }
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
