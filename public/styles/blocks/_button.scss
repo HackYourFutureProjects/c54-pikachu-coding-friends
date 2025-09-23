@@ -20,7 +20,9 @@
   opacity: 1;
   visibility: visible;
 
-  transition: 300ms background-color, 300ms color;
+  transition:
+    300ms background-color,
+    300ms color;
 
   &:focus-visible {
     outline: 2px solid var(--color-info-700);

@@ -34,7 +34,9 @@
   overflow-y: auto;
   transform: scale(0.95);
   opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 
   &__close {
     position: absolute;
