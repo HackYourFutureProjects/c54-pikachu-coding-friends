@@ -9,7 +9,6 @@
     not by your listeners
 */
 
-
 export const quizData = [
   {
     id: 'bmw',

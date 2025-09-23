@@ -1,0 +1,33 @@
+:root {
+  --color-light: #ffffff;
+  --color-light-100: #f7f7f7;
+  --color-light-300: #dddddd;
+
+  /*dark*/
+  --color-dark: #0d0d0d;
+  --color-dark-100: #171717;
+  --color-dark-300: #2d2d2d;
+  --color-gray-500: #7e7e81;
+
+  /*accent*/
+  --color-accent-300: #a280ff;
+  --color-accent-500: #8c61ff;
+  --color-accent-700: #704ecc;
+  --color-accent-900: #382766;
+  --color-accent-1000: #1a0f2b;
+
+  /*info*/
+  --color-info-500: #397df6;
+
+  //success
+  --color-success-100: #80ffbf;
+  --color-success-300: #22e584;
+  --color-success-500: #14cc70;
+  --color-success-900: #0a6638;
+
+  //danger
+  --color-danger-300: #f23d61;
+  --color-danger-500: #cc1439;
+
+  --color-overlay: 0 0% 100%;
+}

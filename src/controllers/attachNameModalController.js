@@ -12,9 +12,13 @@ export function attachNameModalController(
   const btnClose = modalEl.querySelector(`#${MODAL_CLOSE_ID}`);
   const btnSave = modalEl.querySelector(`#${MODAL_SAVE_NAME}`);
   const modalBox = modalEl.querySelector('.modal');
-
+  const documentElement = document.documentElement;
   function openModal() {
-    requestAnimationFrame(() => modalEl.classList.add('is-open'));
+    requestAnimationFrame(() => {
+      modalEl.classList.add('is-open');
+      documentElement.classList.add('is-lock');
+    });
+
     if (input) {
       input.focus();
     }
@@ -22,6 +26,7 @@ export function attachNameModalController(
 
   function closeModal() {
     modalEl.classList.remove('is-open');
+    documentElement.classList.remove('is-lock');
   }
 
   function onOverlayClick() {

@@ -1,19 +1,28 @@
-.app-header {
+.header {
   position: sticky;
   top: 0;
   z-index: 100;
   padding-block: 8px;
   background-color: var(--color-dark-100);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-inline: 16px;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-inline: 16px;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 }
 
 .logo {
   width: 50px;
   height: 50px;
-  border-radius: 50%; /* يخلي الصورة مدورة */
+  border-radius: 50%;
 }
 
 .title {

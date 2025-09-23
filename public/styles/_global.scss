@@ -6,3 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 1200px;
+}
+
+html.is-lock {
+  overflow: hidden;
+}
