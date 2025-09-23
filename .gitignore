@@ -1,2 +1,6 @@
 node_modules
 .idea
+
+# Ignore generated css and maps
+public/styles/main.css
+public/styles/main.css.map
