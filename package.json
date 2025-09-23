@@ -4,7 +4,7 @@
   "scripts": {
     "prettier:write": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "sass-watch": "sass --watch ."
+    "sass-watch": "sass --watch public/styles/main.scss:public/styles/main.css"
   },
   "repository": {
     "type": "git",
