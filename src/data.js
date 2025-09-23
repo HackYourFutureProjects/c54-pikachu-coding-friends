@@ -9,7 +9,6 @@
     not by your listeners
 */
 
-export let currentQuiz = 'bmw';
 
 export const quizData = [
   {
