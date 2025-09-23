@@ -39,7 +39,7 @@
   cursor: text;
 }
 .input-container:hover .icon {
-  color: hsl(var(--color-primary)/1);
+  color: hsl(var(--color-primary) / 1);
 }
 .input-container:focus-within {
   border: 1px solid var(--color-accent-500);
@@ -59,8 +59,11 @@
   -moz-appearance: none;
   background-color: inherit;
 }
-.input:-webkit-autofill, .input:-webkit-autofill:hover, .input:-webkit-autofill:focus, .input:-webkit-autofill:active {
-  box-shadow: 0 0 0 30px hsl(var(--color-content1)/1) inset !important;
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px hsl(var(--color-content1) / 1) inset !important;
   -webkit-text-fill-color: white;
   border-color: 1px solid var(--color-light-100);
 }
@@ -70,7 +73,7 @@
   font-size: 14px;
 }
 .input.error {
-  color: hsl(var(--color-danger)/1);
+  color: hsl(var(--color-danger) / 1);
   border-color: var(--color-accent);
 }
 
