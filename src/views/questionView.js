@@ -1,12 +1,41 @@
+/**
+ * @typedef {Object} QuestionCurrent
+ * @property {string} [text]
+ * @property {string[]} [options]
+ * @property {string} [image]
+ * @property {string} [alt]
+ * @property {number} [points]
+ */
+
+/**
+ * @typedef {Object} QuestionViewParams
+ * @property {number} [index]
+ * @property {number} [total]
+ * @property {number} [correct]
+ * @property {number} [points]
+ * @property {number} [streak]
+ * @property {QuestionCurrent} [current]
+ */
+
 import { ANSWERS_LIST_ID, NEXT_QUESTION_BUTTON_ID } from '../constants.js';
 
 /**
- * Create the full question view
- * @param {Object} question
- * @param {string} question.text
- * @param {string[]} question.options
- * @param {string} [question.image]
- * @param {string} [question.alt]
+ * Quiz state and question parameters.
+ *
+ * @param {Object} params
+ * @param {number} [params.index=1]
+ * @param {number} [params.total=1]
+ * @param {number} [params.correct=0]
+ * @param {number} [params.points=0]
+ * @param {number} [params.streak=0]
+ *
+ * @param {Object} [params.current]
+ * @param {string} [params.current.text='']
+ * @param {string[]} [params.current.options=[]]
+ * @param {string} [params.current.image]
+ * @param {string} [params.current.alt]
+ * @param {number} [params.current.points=10]
+ *
  * @returns {HTMLElement}
  */
 export function createQuestionView({
@@ -16,7 +45,17 @@ export function createQuestionView({
   points = 0,
   streak = 0,
   current = { text: '', options: [] },
-}) {
+} = {}) {
+  const safeCurrent = {
+    text: '',
+    options: [],
+    points: 10,
+    ...current,
+  };
+
+  const safeOptions = Array.isArray(safeCurrent.options)
+    ? safeCurrent.options.filter(Boolean).map(String).slice(0, 4)
+    : [];
   const root = document.createElement('section');
   root.className = 'quiz-question';
 
@@ -60,9 +99,11 @@ export function createQuestionView({
 
   const title = document.createElement('h2');
   title.className = 'quiz-question__title';
-  title.textContent = current.text || '';
+  title.textContent = safeCurrent.text || '—';
 
-  const perQuestionPoints = current?.points ?? 10;
+  const perQuestionPoints = Number.isFinite(safeCurrent.points)
+    ? safeCurrent.points
+    : 10;
   const pointsChip = document.createElement('span');
   pointsChip.className = 'quiz-question__points';
   pointsChip.setAttribute('aria-label', 'Points for this question');
@@ -72,15 +113,21 @@ export function createQuestionView({
   block.appendChild(header);
 
   // Picture
-  if (current.image) {
-    const picture = document.createElement('div');
-    picture.className = 'quiz-question__picture';
+  const picture = document.createElement('div');
+  picture.className = 'quiz-question__picture';
+
+  if (safeCurrent.image) {
     const img = document.createElement('img');
-    img.src = current.image;
-    img.alt = current.alt ? escapeHTML(current.alt) : 'question image';
+    img.src = safeCurrent.image;
+    img.alt = safeCurrent.alt ? String(safeCurrent.alt) : 'Question image';
     picture.appendChild(img);
-    block.appendChild(picture);
+  } else {
+    const ph = document.createElement('div');
+    ph.className = 'quiz-question__picture--placeholder';
+    ph.setAttribute('aria-hidden', 'true');
+    picture.appendChild(ph);
   }
+  block.appendChild(picture);
 
   // Answers
   const list = document.createElement('ul');
@@ -88,33 +135,55 @@ export function createQuestionView({
   if (ANSWERS_LIST_ID) list.id = ANSWERS_LIST_ID;
 
   const letters = ['A', 'B', 'C', 'D'];
-  (current.options || []).slice(0, 4).forEach((opt, i) => {
+
+  if (safeOptions.length) {
+    safeOptions.forEach((opt, i) => {
+      const li = document.createElement('li');
+      li.className = 'quiz-question__item';
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'button tertiary quiz-question__answer';
+      btn.dataset.index = String(i);
+      btn.setAttribute('aria-label', `Answer ${letters[i]}: ${opt}`);
+      btn.innerHTML = `
+      <span class="answer__key">${letters[i]}</span>
+      <span class="answer__text">${escapeHTML(opt)}</span>
+    `;
+
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+  } else {
     const li = document.createElement('li');
     li.className = 'quiz-question__item';
 
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'button tertiary quiz-question__answer';
-    btn.dataset.index = String(i);
-    btn.setAttribute('aria-label', `Answer ${letters[i]}: ${opt}`);
+    btn.disabled = true;
     btn.innerHTML = `
-      <span class="answer__key">${letters[i]}</span>
-      <span class="answer__text">${escapeHTML(opt)}</span>
-    `;
-
-    btn.addEventListener('click', () => {
-      root.dispatchEvent(
-        new CustomEvent('answer:select', {
-          bubbles: true,
-          detail: { index: i },
-        })
-      );
-    });
+    <span class="answer__key">—</span>
+    <span class="answer__text">No answers available</span>
+  `;
 
     li.appendChild(btn);
     list.appendChild(li);
-  });
+  }
+
   block.appendChild(list);
+
+  list.addEventListener('click', (e) => {
+    const btn = e.target.closest('button.quiz-question__answer');
+    if (!btn) return;
+
+    const i = Number(btn.dataset.index);
+    if (!Number.isFinite(i)) return;
+
+    root.dispatchEvent(
+      new CustomEvent('answer:select', { bubbles: true, detail: { index: i } })
+    );
+  });
 
   // Nav
   const nav = document.createElement('div');
