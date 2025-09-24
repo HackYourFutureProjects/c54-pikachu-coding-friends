@@ -2,7 +2,17 @@ body {
   transition-duration: 0ms;
   font-family: var(--font-family-base), sans-serif;
   color: var(--color-light-100);
-  background-color: #000; /* matches your screenshot */
+  background-color: #0d0d0d;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 1200px;
+}
+
+html.is-lock {
+  overflow: hidden;
 }

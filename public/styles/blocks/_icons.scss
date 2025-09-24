@@ -1,0 +1,31 @@
+.icon {
+  border-radius: 100%;
+  height: 32px;
+  width: 32px;
+  transition: 200ms all;
+}
+
+.fire {
+  background: var(--color-warning-700);
+  box-shadow: 0 0 20px var(--color-warning-700);
+}
+
+.electric {
+  background: var(--color-warning-500);
+  box-shadow: 0 0 20px #f2d94e;
+}
+
+.water {
+  background: var(--color-info-300);
+  box-shadow: 0 0 20px var(--color-info-300);
+}
+
+.grass {
+  background: var(--color-success-700);
+  box-shadow: 0 0 20px var(--color-success-700);
+}
+
+.normal {
+  background: var(--color-gray-300);
+  box-shadow: 0 0 20px var(--color-gray-300);
+}

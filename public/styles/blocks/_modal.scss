@@ -5,7 +5,12 @@
   justify-content: center;
   align-items: center;
   padding: 0 0.8rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: color-mix(
+    in oklab,
+    hsl(var(--color-overlay) / 1) 30%,
+    transparent
+  );
+  backdrop-filter: blur(10px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -23,7 +28,7 @@
   align-items: start;
   justify-content: center;
   position: relative;
-  background: black;
+  background: #171717;
   width: 400px;
   padding: 1.5rem;
   z-index: 1500;
@@ -34,15 +39,18 @@
   overflow-y: auto;
   transform: scale(0.95);
   opacity: 0;
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 
   &__close {
     position: absolute;
     top: 1rem;
     right: 1rem;
     color: var(--main-text-color);
+    background-color: transparent;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
   }
 
   &__content {

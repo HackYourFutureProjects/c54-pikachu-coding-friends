@@ -1,6 +1,11 @@
 @use './blocks/input';
 @use './blocks/modal';
 @use './blocks/button';
+@use './blocks/welcomPage';
+@use './blocks/header';
+@use './blocks/burger';
+@use './blocks/icons';
 
 @use 'global';
 @use 'normalize';
+@use 'colors';
