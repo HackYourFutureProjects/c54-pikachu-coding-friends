@@ -7,6 +7,8 @@
   --color-dark: #0d0d0d;
   --color-dark-100: #171717;
   --color-dark-300: #2d2d2d;
+
+  --color-gray-300: #a0a29f;
   --color-gray-500: #7e7e81;
 
   /*accent*/
@@ -17,12 +19,14 @@
   --color-accent-1000: #1a0f2b;
 
   /*info*/
+  --color-info-300: #539ddf;
   --color-info-500: #397df6;
 
   //success
   --color-success-100: #80ffbf;
   --color-success-300: #22e584;
   --color-success-500: #14cc70;
+  --color-success-700: #5fbd58;
   --color-success-900: #0a6638;
 
   //danger
@@ -30,4 +34,8 @@
   --color-danger-500: #cc1439;
 
   --color-overlay: 0 0% 100%;
+
+  //warning
+  --color-warning-500: #f2d94e;
+  --color-warning-700: #fba54c;
 }

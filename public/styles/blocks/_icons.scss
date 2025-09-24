@@ -6,26 +6,26 @@
 }
 
 .fire {
-  background: #fba54c;
-  box-shadow: 0 0 20px #fba54c;
+  background: var(--color-warning-700);
+  box-shadow: 0 0 20px var(--color-warning-700);
 }
 
 .electric {
-  background: #f2d94e;
+  background: var(--color-warning-500);
   box-shadow: 0 0 20px #f2d94e;
 }
 
 .water {
-  background: #539ddf;
-  box-shadow: 0 0 20px #539ddf;
+  background: var(--color-info-300);
+  box-shadow: 0 0 20px var(--color-info-300);
 }
 
 .grass {
-  background: #5fbd58;
-  box-shadow: 0 0 20px #5fbd58;
+  background: var(--color-success-700);
+  box-shadow: 0 0 20px var(--color-success-700);
 }
 
 .normal {
-  background: #a0a29f;
-  box-shadow: 0 0 20px #a0a29f;
+  background: var(--color-gray-300);
+  box-shadow: 0 0 20px var(--color-gray-300);
 }
