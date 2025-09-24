@@ -1,12 +1,12 @@
 import { TextFieldView } from './textFieldView.js';
 import { MODAL_ID, MODAL_INPUT_ID, MODAL_SAVE_NAME } from '../constants.js';
 
-export function NameModalView() {
+export function nameModalView() {
   const modalOverlay = document.createElement('div');
   modalOverlay.className = 'overlay';
 
   modalOverlay.innerHTML = `
-        <div class="modal" id=${MODAL_ID}>
+        <div class="modal" id='${MODAL_ID}'>
           <div class="modal__content">
              <button class="modal__close" id="close-modal">X</button>
              <h2 class="modal__title">Enter your name</h2>

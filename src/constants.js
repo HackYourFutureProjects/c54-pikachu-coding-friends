@@ -15,3 +15,7 @@ export const MODAL_ID = 'modal';
 export const MODAL_CLOSE_ID = 'close-modal';
 export const MODAL_INPUT_ID = 'modal-input';
 export const MODAL_SAVE_NAME = 'modal-save';
+
+//burger
+export const BURGER_MENU = 'burger-menu';
+export const BURGER_BUTTON = 'burger-button';

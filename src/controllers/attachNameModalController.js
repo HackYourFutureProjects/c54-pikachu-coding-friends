@@ -13,6 +13,7 @@ export function attachNameModalController(
   const btnSave = modalEl.querySelector(`#${MODAL_SAVE_NAME}`);
   const modalBox = modalEl.querySelector('.modal');
   const documentElement = document.documentElement;
+
   function openModal() {
     requestAnimationFrame(() => {
       modalEl.classList.add('is-open');

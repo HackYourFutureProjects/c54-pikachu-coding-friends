@@ -1,9 +1,8 @@
-export let currentQuiz = 'bmw';
-
 export function setCurrentQuiz(id) {
-  currentQuiz = id;
+  localStorage.setItem('current-quiz', id);
 }
 
 export function getCurrentQuiz() {
-  return currentQuiz;
+  const saved = localStorage.getItem('current-quiz');
+  return saved ? saved : null;
 }
