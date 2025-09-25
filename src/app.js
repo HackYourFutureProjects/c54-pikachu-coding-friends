@@ -1,19 +1,35 @@
 import { initWelcomePage } from './pages/welcomePage.js';
-import { getCurrentQuiz } from './state/quizState.js';
-import { quizData } from './data.js';
 import { nameModalView } from './views/modal.js';
+import { header } from './views/header.js';
+import { currentQuiz } from './utils/getCurrentQuiz.js';
 
 let modal;
 
 const loadApp = () => {
+  const root = document.getElementById('user-interface');
+  root.innerHTML = '';
+
   if (!modal) {
     modal = nameModalView();
     document.body.appendChild(modal);
   }
 
-  let quizId = getCurrentQuiz() || quizData[0].id;
-  const quiz = quizData.find((q) => q.id === quizId);
-  initWelcomePage(quiz, modal);
+  const quiz = currentQuiz();
+
+  const pageWrapper = document.createElement('div');
+  pageWrapper.className = 'page-wrapper';
+
+  const mainHeader = header(modal, pageWrapper, {
+    onLogoClick: () => {
+      const quiz = currentQuiz();
+      initWelcomePage(quiz, modal, pageWrapper);
+    },
+  });
+
+  root.appendChild(mainHeader);
+  root.appendChild(pageWrapper);
+
+  initWelcomePage(quiz, modal, pageWrapper);
 };
 
 window.addEventListener('load', loadApp);

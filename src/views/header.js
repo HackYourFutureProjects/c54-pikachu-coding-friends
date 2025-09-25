@@ -4,7 +4,7 @@ import { attachBurgerController } from '../controllers/attachBurgerMenuControlle
 import { setCurrentQuiz } from '../state/quizState.js';
 import { initWelcomePage } from '../pages/welcomePage.js';
 
-export function header(modal) {
+export function header(modal, pageWrapper, { onLogoClick }) {
   const header = document.createElement('header');
   header.className = 'header';
 
@@ -24,11 +24,16 @@ export function header(modal) {
     `;
   header.querySelector('.header__wrapper').appendChild(menu);
 
+  const logo = header.querySelector('.header__nav');
+  if (onLogoClick) {
+    logo.addEventListener('click', onLogoClick);
+  }
+
   attachBurgerController(header, {
     onSelect: (id) => {
       setCurrentQuiz(id);
       const quiz = quizData.find((q) => q.id === id);
-      initWelcomePage(quiz, modal);
+      initWelcomePage(quiz, modal, pageWrapper);
     },
   });
 
