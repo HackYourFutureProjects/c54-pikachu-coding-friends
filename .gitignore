@@ -4,5 +4,3 @@ node_modules
 # Ignore generated css and maps
 public/styles/main.css
 public/styles/main.css.map
-public/styles/main.css
-public/styles/main.css.map

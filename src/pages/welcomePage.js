@@ -4,21 +4,16 @@ import { createWelcomeElement } from '../views/welcomeView.js';
 import { attachNameModalController } from '../controllers/attachNameModalController.js';
 import { header } from '../views/header.js';
 
-export const initWelcomePage = (quiz, modal) => {
-  const root = document.getElementById('user-interface');
-  root.innerHTML = '';
-
-  const mainHeader = header(modal);
-
-  root.appendChild(mainHeader);
+export const initWelcomePage = (quiz, modal, pageWrapper) => {
+  pageWrapper.innerHTML = '';
 
   const page = createWelcomeElement(quiz);
-  root.appendChild(page);
+  pageWrapper.appendChild(page);
 
   const startBtn = page.querySelector('#start-quiz');
 
   startBtn.addEventListener('click', () => {
-    initQuestionPage(quiz);
+    initQuestionPage(quiz, pageWrapper);
   });
 
   const existingName = getUserName();
