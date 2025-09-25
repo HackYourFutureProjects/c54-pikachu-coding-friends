@@ -3,8 +3,8 @@ import {createQuestionView} from "../views/questionView.js";
 
 export const initQuestionPage = (quiz, pageWrapper) => {
     pageWrapper.innerHTML = '';
-    const initQuestionPage = document.createElement('div');
-    const {questions, currentQuestion, image} = quiz
+    const initQuestionPageEl = document.createElement('div');
+    const {questions, currentQuestion, image, points} = quiz
 
     const current = questions[currentQuestion]
 
@@ -16,9 +16,26 @@ export const initQuestionPage = (quiz, pageWrapper) => {
     } = createQuestionView(current, image)
 
 
-    initQuestionPage.appendChild(questionDiv)
+    //quiz.currentQuestion++,  initQuestionPage(quiz, pageWrapper), const correctAnswer = current.options[current.correctIndex]
 
 
-    pageWrapper.appendChild(initQuestionPage)
+    questionButtons.forEach(button => {
+        //button.classList.add('wrong')
+        button.addEventListener('click', (e) => {
+            nextButton.classList.toggle('hide');
+        })
+    })
+
+    nextButton.addEventListener('click', () => {
+        quiz.currentQuestion++
+        initQuestionPage(quiz, pageWrapper)
+    })
+
+    skipButton.addEventListener('click', () => {
+        nextButton.classList.toggle('hide');
+    })
+
+    initQuestionPageEl.appendChild(questionDiv)
+    pageWrapper.appendChild(initQuestionPageEl)
 
 };

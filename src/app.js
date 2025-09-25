@@ -15,7 +15,6 @@ const loadApp = () => {
     document.body.appendChild(modal);
   }
 
-
     const quiz = currentQuiz()
 
     const pageWrapper = document.createElement('div');
