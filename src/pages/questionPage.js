@@ -1,14 +1,24 @@
-import {
-  ANSWERS_LIST_ID,
-  NEXT_QUESTION_BUTTON_ID,
-  USER_INTERFACE_ID,
-} from '../constants.js';
-import { createQuestionElement } from '../views/questionView.js';
-import { createAnswerElement } from '../views/answerView.js';
-import { quizData } from '../data.js';
 
-export const initQuestionPage = () => {
-  document
-    .getElementById(NEXT_QUESTION_BUTTON_ID)
-    .addEventListener('click', nextQuestion);
+import {createQuestionView} from "../views/questionView.js";
+
+export const initQuestionPage = (quiz, pageWrapper) => {
+    pageWrapper.innerHTML = '';
+    const initQuestionPage = document.createElement('div');
+    const {questions, currentQuestion, image} = quiz
+
+    const current = questions[currentQuestion]
+
+    const {
+        questionDiv,
+        skipButton,
+        nextButton,
+        questionButtons
+    } = createQuestionView(current, image)
+
+
+    initQuestionPage.appendChild(questionDiv)
+
+
+    pageWrapper.appendChild(initQuestionPage)
+
 };

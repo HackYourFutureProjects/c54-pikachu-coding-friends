@@ -19,3 +19,7 @@ export const MODAL_SAVE_NAME = 'modal-save';
 //burger
 export const BURGER_MENU = 'burger-menu';
 export const BURGER_BUTTON = 'burger-button';
+
+//page button
+export const NEXT_BUTTON_ID = 'next-button';
+export const SKIP_BUTTON_ID = 'skip-button';
