@@ -53,7 +53,28 @@ body.screen-pulse::after {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 60px;
+  max-width: 700px;
+  margin: 60px auto;
+}
+
+.page-transition {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.page-transition.slide-out {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.page-transition.slide-in {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.page-transition.slide-in-active {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 html.is-lock {

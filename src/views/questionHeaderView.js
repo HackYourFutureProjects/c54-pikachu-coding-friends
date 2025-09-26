@@ -2,19 +2,19 @@ import { timerView } from './timerView.js';
 import { timerController } from '../controllers/timerController.js';
 
 export function questionHeaderView(points, streak, { onTimeout }) {
-  const questionHeaderDiv = document.createElement('div');
-  questionHeaderDiv.className = 'question-header';
+  const questionHeaderElement = document.createElement('div');
+  questionHeaderElement.className = 'question-header';
 
-  questionHeaderDiv.innerHTML = `
+  questionHeaderElement.innerHTML = `
         <div class="question-header__item">Points: ${points}</div>
         <div class="timer"></div>
         <div class="question-header__item">Streak: ${streak}</div>
     `;
 
-  const timerContainer = questionHeaderDiv.querySelector('.timer');
+  const timerContainer = questionHeaderElement.querySelector('.timer');
   const { timerDiv, circle, text, circumference } = timerView();
 
-  timerController({
+  const { stop } = timerController({
     duration: 30,
     circumference,
     circle,
@@ -23,5 +23,5 @@ export function questionHeaderView(points, streak, { onTimeout }) {
   });
 
   timerContainer.appendChild(timerDiv);
-  return questionHeaderDiv;
+  return { questionHeaderElement, stop };
 }
