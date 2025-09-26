@@ -54,14 +54,3 @@ export const initQuestionPage = (quiz, pageWrapper) => {
   initQuestionPageEl.appendChild(questionDiv);
   pageWrapper.appendChild(initQuestionPageEl);
 };
-
-if (quiz.currentQuestion >= quiz.questions.length) {
-  pageWrapper.innerHTML = '';
-  pageWrapper.appendChild(congratulationView(quiz));
-  return;
-}
-if (quiz.currentQuestion >= quiz.questions.length) {
-  pageWrapper.innerHTML = '';
-  pageWrapper.appendChild(congratulationView(quiz));
-  return;
-}
