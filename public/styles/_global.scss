@@ -2,9 +2,44 @@ body {
   transition-duration: 0ms;
   font-family: var(--font-family-base), sans-serif;
   color: var(--color-light-100);
-  background-color: #0d0d0d;
+  background-color: var(--color-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.screen-pulse::before,
+body.screen-pulse::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  filter: blur(20px);
+  opacity: 0.5;
+  z-index: 9999;
+  animation: pulseGlow 2s infinite;
+}
+
+body.screen-pulse::before {
+  left: 0;
+  background: red;
+}
+
+body.screen-pulse::after {
+  right: 0;
+  background: red;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }
 
 .container {
@@ -17,6 +52,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 60px;
 }
 

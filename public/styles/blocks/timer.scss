@@ -1,0 +1,40 @@
+.timer-wrapper {
+  width: 100px;
+  height: 100px;
+}
+
+.timer {
+  width: 100px;
+  height: 100px;
+  transform: rotate(-90deg);
+}
+
+.timer-bg {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 5;
+}
+
+.timer-progress {
+  fill: none;
+  stroke: var(--color-success-700);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+.timer-text {
+  font-size: 30px;
+  fill: white;
+  dominant-baseline: middle;
+  text-anchor: middle;
+  transform: rotate(180deg);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.red {
+  stroke: var(--color-danger-500);
+}
