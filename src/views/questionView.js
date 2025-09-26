@@ -27,9 +27,12 @@ export function createQuestionView(currentQuestion, image) {
           )
           .join('')}
       </ul>
-      <button id="${NEXT_BUTTON_ID}" class="button primary hide">Next</button>
-      <button id="${SKIP_BUTTON_ID}" class="button primary">Skip</button>
+      <div class="quiz-question__button-group">
+            <button id="${SKIP_BUTTON_ID}" class="button secondary">Skip</button>
+            <button id="${NEXT_BUTTON_ID}" class="button primary hide">Next</button> 
+      </div>
   `;
+
   const nextButton = questionDiv.querySelector(`#${NEXT_BUTTON_ID}`);
   const skipButton = questionDiv.querySelector(`#${SKIP_BUTTON_ID}`);
 

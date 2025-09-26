@@ -2,6 +2,7 @@ import { initWelcomePage } from './pages/welcomePage.js';
 import { nameModalView } from './views/modal.js';
 import { header } from './views/header.js';
 import { currentQuiz } from './utils/getCurrentQuiz.js';
+import { updatePage } from './utils/updatePage.js';
 
 let modal;
 
@@ -18,12 +19,10 @@ const loadApp = () => {
 
   const pageWrapper = document.createElement('div');
   pageWrapper.className = 'page-wrapper';
+  pageWrapper.classList.add('page-transition');
 
   const mainHeader = header(modal, pageWrapper, {
-    onLogoClick: () => {
-      const quiz = currentQuiz();
-      initWelcomePage(quiz, modal, pageWrapper);
-    },
+    onLogoClick: () => updatePage(modal, pageWrapper),
   });
 
   root.appendChild(mainHeader);

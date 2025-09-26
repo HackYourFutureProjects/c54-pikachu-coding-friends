@@ -1,5 +1,4 @@
-export function congratulationView(quiz) {
-  const userName = localStorage.getItem('userName');
+export function congratulationView(quiz, name) {
   const total = quiz.questions.length;
   const score = quiz.points;
 
@@ -8,13 +7,20 @@ export function congratulationView(quiz) {
 
   const title = document.createElement('h2');
 
-  if (userName === 'skipped' || !userName) {
-    title.textContent = 'Congratulation!';
+  const button = document.createElement('button');
+  button.className = 'primary';
+  button.textContent = 'Start again';
+
+  if (name === 'skipped' || !name) {
+    title.textContent = `Congratulation! You get ${score}/${total} points`;
   } else {
-    title.textContent = `Congratulation ${userName}! You get ${score}/${total} points`;
+    title.textContent = `Congratulation ${name}! You get ${score}/${total} points`;
   }
 
   container.appendChild(title);
 
-  return container;
+  return {
+    container,
+    button,
+  };
 }

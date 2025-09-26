@@ -18,6 +18,7 @@ export const quizData = [
     currentQuestion: 0,
     points: 0,
     completed: false,
+    streak: 0,
     icon: 'electric.svg',
     type: 'electric',
     questions: [
@@ -116,6 +117,7 @@ export const quizData = [
     currentQuestion: 0,
     points: 0,
     completed: false,
+    streak: 0,
     icon: 'fire.svg',
     type: 'fire',
     questions: [
@@ -209,6 +211,7 @@ export const quizData = [
     currentQuestion: 0,
     points: 0,
     completed: false,
+    streak: 0,
     icon: 'water.svg',
     type: 'water',
     questions: [
@@ -307,6 +310,7 @@ export const quizData = [
     currentQuestion: 0,
     points: 0,
     completed: false,
+    streak: 0,
     icon: 'grass.svg',
     type: 'grass',
     questions: [
@@ -405,6 +409,7 @@ export const quizData = [
     currentQuestion: 0,
     points: 0,
     completed: false,
+    streak: 0,
     icon: 'normal.svg',
     type: 'normal',
     questions: [

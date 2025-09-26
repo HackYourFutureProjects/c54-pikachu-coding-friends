@@ -2,7 +2,6 @@ import { initQuestionPage } from './questionPage.js';
 import { getUserName, setUserName } from '../state/userState.js';
 import { createWelcomeElement } from '../views/welcomeView.js';
 import { attachNameModalController } from '../controllers/attachNameModalController.js';
-import { header } from '../views/header.js';
 
 export const initWelcomePage = (quiz, modal, pageWrapper) => {
   pageWrapper.innerHTML = '';
@@ -13,7 +12,7 @@ export const initWelcomePage = (quiz, modal, pageWrapper) => {
   const startBtn = page.querySelector('#start-quiz');
 
   startBtn.addEventListener('click', () => {
-    initQuestionPage(quiz, pageWrapper);
+    initQuestionPage(quiz, pageWrapper, modal);
   });
 
   const existingName = getUserName();
