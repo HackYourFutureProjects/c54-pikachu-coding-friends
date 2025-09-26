@@ -4,3 +4,6 @@ node_modules
 # Ignore generated css and maps
 public/styles/main.css
 public/styles/main.css.map
+# build artifacts
+public/styles/*.css
+public/styles/*.css.map

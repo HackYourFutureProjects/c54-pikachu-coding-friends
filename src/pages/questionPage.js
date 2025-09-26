@@ -7,6 +7,10 @@ export const initQuestionPage = (quiz, pageWrapper) => {
   const initQuestionPageEl = document.createElement('div');
 
   const { questions, currentQuestion, image } = quiz;
+  pageWrapper.innerHTML = '';
+  const initQuestionPageEl = document.createElement('div');
+  const { questions, currentQuestion, image, points } = quiz;
+
   const current = questions[currentQuestion];
 
   const {
@@ -38,6 +42,14 @@ export const initQuestionPage = (quiz, pageWrapper) => {
 
       nextButton.classList.remove('hide');
       nextButton.disabled = false;
+
+  //quiz.currentQuestion++,  initQuestionPage(quiz, pageWrapper), const correctAnswer = current.options[current.correctIndex]
+
+  questionButtons.forEach((button) => {
+    //button.classList.add('wrong')
+    button.addEventListener('click', (e) => {
+      nextButton.classList.toggle('hide');
+
     });
   });
 
@@ -49,6 +61,7 @@ export const initQuestionPage = (quiz, pageWrapper) => {
   skipButton.addEventListener('click', () => {
     quiz.currentQuestion++;
     initQuestionPage(quiz, pageWrapper);
+    nextButton.classList.toggle('hide');
   });
 
   initQuestionPageEl.appendChild(questionDiv);
