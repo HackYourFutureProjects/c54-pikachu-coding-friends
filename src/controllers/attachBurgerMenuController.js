@@ -1,5 +1,13 @@
 import { BURGER_BUTTON, BURGER_MENU } from '../constants.js';
 
+/**
+ *
+ * @param {HTMLElement} rootEl
+ * @param {Object} options
+ * @param {Function} options.onSelect
+ * @returns {void}
+ */
+
 export function attachBurgerController(rootEl, { onSelect }) {
   const btn = rootEl.querySelector(`#${BURGER_BUTTON}`);
   const menu = rootEl.querySelector(`#${BURGER_MENU}`);

@@ -6,6 +6,12 @@ import { disableButtons } from '../utils/disableButtons.js';
 import { handleAnswer } from '../utils/handleAnswer.js';
 import { skipQuestion } from '../utils/skipQuestion.js';
 import { saveProgress, loadProgress } from '../utils/quizStorageProgress.js';
+import { restoreQuestionState } from '../utils/restoreQuestionState.js';
+/**
+ * @param {Quiz} quiz
+ * @param {HTMLElement} pageWrapper
+ * @param {HTMLElement} modal
+ */
 
 export const initQuestionPage = (quiz, pageWrapper, modal) => {
   if (typeof quiz.points !== 'number') {
@@ -27,9 +33,9 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
           questionButtons,
           nextButton,
           skipButton,
-          stop
+          stop,
+          quiz
         );
-        saveProgress(quiz);
       },
     }
   );
@@ -45,34 +51,16 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
   } = createQuestionView(current, image);
 
   const correctBtn = questionButtons[current.correctIndex];
-  let answered = false;
 
-  if (current.skipped) {
-    skipQuestion(
-      current,
-      correctBtn,
-      questionButtons,
-      nextButton,
-      skipButton,
-      stop
-    );
-    answered = true;
-  } else if (current.userAnswer !== null && current.userAnswer !== undefined) {
-    questionButtons.forEach((b) => (b.disabled = true));
-    skipButton.classList.add('hide');
-
-    const chosen = questionButtons[current.userAnswer];
-    chosen.classList.add(
-      current.userAnswer === current.correctIndex ? 'success' : 'wrong'
-    );
-    if (current.userAnswer !== current.correctIndex) {
-      correctBtn.classList.add('success');
-    }
-
-    nextButton.classList.remove('hide');
-    stop();
-    answered = true;
-  }
+  let { answered } = restoreQuestionState({
+    current,
+    correctBtn,
+    questionButtons,
+    nextButton,
+    skipButton,
+    stop,
+    quiz,
+  });
 
   questionButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
@@ -80,6 +68,7 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
         return;
       }
       answered = true;
+      current.userAnswer = index;
 
       disableButtons(questionButtons);
       skipButton.classList.add('hide');
@@ -94,7 +83,7 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
 
   nextButton.addEventListener('click', () => {
     quiz.currentQuestion++;
-
+    saveProgress(quiz);
     animatePageTransition(pageWrapper, () => {
       if (quiz.currentQuestion < quiz.questions.length) {
         initQuestionPage(quiz, pageWrapper, modal);
@@ -104,17 +93,17 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
     });
   });
 
-  skipButton.addEventListener('click', () =>
+  skipButton.addEventListener('click', () => {
     skipQuestion(
       current,
       correctBtn,
       questionButtons,
       nextButton,
       skipButton,
-      stop
-    )
-  );
-  saveProgress(quiz);
+      stop,
+      quiz
+    );
+  });
 
   pageWrapper.appendChild(questionHeaderElement);
   initQuestionPageEl.appendChild(questionDiv);

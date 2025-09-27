@@ -1,6 +1,14 @@
 import { timerView } from './timerView.js';
 import { timerController } from '../controllers/timerController.js';
 
+/**
+ * @param {number} points
+ * @param {number} streak
+ * @param {Object} options
+ * @param {Function} options.onTimeout
+ * @returns {{ questionHeaderElement: HTMLElement, stop: Function }}
+ */
+
 export function questionHeaderView(points, streak, { onTimeout }) {
   const questionHeaderElement = document.createElement('div');
   questionHeaderElement.className = 'question-header';

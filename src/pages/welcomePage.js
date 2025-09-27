@@ -3,6 +3,12 @@ import { getUserName, setUserName } from '../state/userState.js';
 import { createWelcomeElement } from '../views/welcomeView.js';
 import { attachNameModalController } from '../controllers/attachNameModalController.js';
 
+/**
+ * @param {Quiz} quiz
+ * @param {HTMLElement} pageWrapper
+ * @param {HTMLElement} modal
+ */
+
 export const initWelcomePage = (quiz, modal, pageWrapper) => {
   pageWrapper.innerHTML = '';
 

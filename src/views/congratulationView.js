@@ -1,3 +1,15 @@
+/**
+ * @param {Object} quiz
+ * @param {string} quiz.id
+ * @param {string} quiz.title
+ * @param {number} quiz.points
+ * @param {number} quiz.streak
+ * @param {Object[]} quiz.questions
+ * @param {string} name
+ *
+ * @returns {{ container: HTMLElement, button: HTMLButtonElement }}
+ */
+
 export function congratulationView(quiz, name) {
   const total = quiz.questions.length;
   const score = quiz.points;

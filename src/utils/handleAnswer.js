@@ -1,3 +1,15 @@
+/**
+ * @param {number} index
+ * @param {number} correctIndex
+
+ * @param {HTMLButtonElement} button
+ * @param {HTMLButtonElement} correctBtn
+ * @param {Object} quiz
+ *   @param {Object[]} quiz.questions
+ *   @param {number} quiz.points
+ *   @param {number} quiz.streak
+ */
+
 export function handleAnswer(index, correctIndex, button, correctBtn, quiz) {
   const isCorrect = index === correctIndex;
 

@@ -1,3 +1,17 @@
+/**
+ * @param {Object} params
+ * @param {number} [params.duration=30]
+ * @param {SVGCircleElement} params.circle
+ * @param {HTMLElement} params.text
+ * @param {number} params.circumference
+ * @param {Function} params.onTimeout
+ * @returns {{ start: Function, stop: Function, reset: Function }}
+ *   An API to control the timer:
+ *   - `start()` — begins or resumes the countdown.
+ *   - `stop()` — pauses the countdown.
+ *   - `reset()` — resets the countdown to the initial `duration`.
+ */
+
 export function timerController({
   duration = 30,
   circle,
@@ -21,12 +35,10 @@ export function timerController({
 
       if (timeLeft <= 10) {
         circle.classList.add('red');
-        document.body.classList.add('screen-pulse');
       }
 
       if (timeLeft <= 0) {
         stop();
-        document.body.classList.remove('screen-pulse');
         if (typeof onTimeout === 'function') {
           onTimeout();
         }
@@ -37,7 +49,6 @@ export function timerController({
   function stop() {
     clearInterval(intervalId);
     intervalId = null;
-    document.body.classList.remove('screen-pulse');
   }
 
   function reset() {
@@ -46,7 +57,6 @@ export function timerController({
     text.textContent = timeLeft;
     setProgress(1);
     circle.classList.remove('red');
-    document.body.classList.remove('screen-pulse');
     start();
   }
 

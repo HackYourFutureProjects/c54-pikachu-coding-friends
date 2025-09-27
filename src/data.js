@@ -8,7 +8,7 @@
     not by your logic
     not by your listeners
 */
-
+/** @type {Quiz[]} */
 export const quizData = [
   {
     id: 'pikachu',
