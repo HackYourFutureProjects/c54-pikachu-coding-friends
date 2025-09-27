@@ -4,6 +4,15 @@ import {
   MODAL_SAVE_NAME,
 } from '../constants.js';
 
+/**
+ * @param {HTMLElement} modalEl
+ * @param {Object} [options={}]
+ * @param {boolean} [options.open=false]
+ * @param {Function} [options.onSave]
+ * @param {Function} [options.onSkip]
+ * @returns {void}
+ */
+
 export function attachNameModalController(
   modalEl,
   { onSave, onSkip, open = false } = {}

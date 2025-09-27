@@ -1,5 +1,15 @@
 import { BURGER_BUTTON, BURGER_MENU } from '../constants.js';
 
+/**
+ * @param {Array<Object>} categories
+ *   @param {string} categories[].id - Unique identifier of the category.
+ *   @param {string} categories[].title - Display name of the category.
+ *   @param {string} categories[].icon - Icon file name for the category.
+ *   @param {string} categories[].type - Type or theme of the category (e.g., 'fire', 'water').
+ *
+ * @returns {HTMLElement}
+ */
+
 export function burgerMenuView(categories) {
   const burgerMenu = document.createElement('div');
   burgerMenu.className = 'burger-wrapper';
@@ -25,7 +35,6 @@ export function burgerMenuView(categories) {
                   <img src="../public/images/${cat.icon}" alt="${cat.icon}">
               </div>
          
-<!--            <svg width="32" height="32" class="${cat.icon}"><use href="../public/images/sprite.svg#${cat.icon}"></use></svg>-->
             <button class="menu__button transparent" data-id="${cat.id}">${cat.title}</button>
           </li>
         `

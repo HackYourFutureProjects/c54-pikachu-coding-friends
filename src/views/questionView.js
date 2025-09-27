@@ -22,7 +22,7 @@ export function createQuestionView(currentQuestion, image) {
         ${options
           .map(
             (opt, i) => `
-            <button class="button tertiary quiz-question__list-button data-index="${i}"">${opt}</button>
+            <button class="button tertiary quiz-question__list-button" data-index="${i}">${opt}</button>
         `
           )
           .join('')}

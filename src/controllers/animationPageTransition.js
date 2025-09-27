@@ -1,3 +1,9 @@
+/**
+ * @param {HTMLElement} pageWrapper
+ * @param {Function} callback
+ * @returns {void}
+ */
+
 export function animatePageTransition(pageWrapper, callback) {
   pageWrapper.classList.add('slide-out');
 

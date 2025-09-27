@@ -4,6 +4,14 @@ import { attachBurgerController } from '../controllers/attachBurgerMenuControlle
 import { setCurrentQuiz } from '../state/quizState.js';
 import { initWelcomePage } from '../pages/welcomePage.js';
 
+/**
+ * @param {HTMLElement} modal
+ * @param {HTMLElement} pageWrapper
+ * @param {Object} options
+ * @param {Function} options.onLogoClick
+ * @returns {HTMLElement}
+ */
+
 export function header(modal, pageWrapper, { onLogoClick }) {
   const header = document.createElement('header');
   header.className = 'header';

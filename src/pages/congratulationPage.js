@@ -2,6 +2,11 @@ import { getUserName } from '../state/userState.js';
 import { congratulationView } from '../views/congratulationView.js';
 import { updatePage } from '../utils/updatePage.js';
 import { resetCardProgress } from '../utils/quizStorageProgress.js';
+/**
+ * @param {Quiz} quiz
+ * @param {HTMLElement} pageWrapper
+ * @param {HTMLElement} modal
+ */
 
 export function congratulationPage(quiz, pageWrapper, modal) {
   pageWrapper.innerHTML = '';
@@ -14,7 +19,7 @@ export function congratulationPage(quiz, pageWrapper, modal) {
   button.addEventListener('click', () => {
     quiz.currentQuestion = 0;
     quiz.points = 0;
-    quiz.question.forEach((q) => {
+    quiz.questions.forEach((q) => {
       q.userAnswer = null;
       q.skipped = false;
     });

@@ -7,41 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body.screen-pulse::before,
-body.screen-pulse::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 20px;
-  filter: blur(20px);
-  opacity: 0.5;
-  z-index: 9999;
-  animation: pulseGlow 2s infinite;
-}
-
-body.screen-pulse::before {
-  left: 0;
-  background: red;
-}
-
-body.screen-pulse::after {
-  right: 0;
-  background: red;
-}
-
-@keyframes pulseGlow {
-  0% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.2;
-  }
-}
-
 .container {
   margin: 0 auto;
   padding: 0 10px;

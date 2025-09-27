@@ -1,3 +1,7 @@
+/**
+ * @typedef {Object} Quiz
+ */
+
 const K = (id) => `quiz-progress:${id}`;
 
 export function saveProgress(quiz) {
@@ -36,4 +40,15 @@ export function loadProgress(quiz) {
 
 export function resetCardProgress(quizId) {
   localStorage.removeItem(K(quizId));
+}
+
+export function getProgress(quizId) {
+  const raw = localStorage.getItem(`quiz-progress:${quizId}`);
+  const stored = raw ? JSON.parse(raw) : null;
+
+  return (
+    !!stored &&
+    ((stored.currentQuestion ?? 0) > 0 ||
+      (stored.answers || []).some((a) => a.userAnswer != null || a.skipped))
+  );
 }

@@ -1,3 +1,9 @@
+/**
+ * @param {string} [placeholder='Enter your name...']
+ * @returns {HTMLInputElement}
+
+ */
+
 export function TextFieldView(placeholder = 'Enter your name...') {
   const inputContainer = document.createElement('div');
   inputContainer.className = 'input-container';
