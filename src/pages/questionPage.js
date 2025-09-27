@@ -5,11 +5,13 @@ import { animatePageTransition } from '../controllers/animationPageTransition.js
 import { disableButtons } from '../utils/disableButtons.js';
 import { handleAnswer } from '../utils/handleAnswer.js';
 import { skipQuestion } from '../utils/skipQuestion.js';
+import { saveProgress, loadProgress } from '../utils/quizStorageProgress.js';
 
 export const initQuestionPage = (quiz, pageWrapper, modal) => {
   if (typeof quiz.points !== 'number') {
     quiz.points = 0;
   }
+  loadProgress(quiz);
 
   pageWrapper.innerHTML = '';
   const initQuestionPageEl = document.createElement('div');
@@ -27,6 +29,7 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
           skipButton,
           stop
         );
+        saveProgress(quiz);
       },
     }
   );
@@ -44,6 +47,33 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
   const correctBtn = questionButtons[current.correctIndex];
   let answered = false;
 
+  if (current.skipped) {
+    skipQuestion(
+      current,
+      correctBtn,
+      questionButtons,
+      nextButton,
+      skipButton,
+      stop
+    );
+    answered = true;
+  } else if (current.userAnswer !== null && current.userAnswer !== undefined) {
+    questionButtons.forEach((b) => (b.disabled = true));
+    skipButton.classList.add('hide');
+
+    const chosen = questionButtons[current.userAnswer];
+    chosen.classList.add(
+      current.userAnswer === current.correctIndex ? 'success' : 'wrong'
+    );
+    if (current.userAnswer !== current.correctIndex) {
+      correctBtn.classList.add('success');
+    }
+
+    nextButton.classList.remove('hide');
+    stop();
+    answered = true;
+  }
+
   questionButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
       if (answered) {
@@ -58,6 +88,7 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
 
       nextButton.classList.remove('hide');
       stop();
+      saveProgress(quiz);
     });
   });
 
@@ -83,6 +114,7 @@ export const initQuestionPage = (quiz, pageWrapper, modal) => {
       stop
     )
   );
+  saveProgress(quiz);
 
   pageWrapper.appendChild(questionHeaderElement);
   initQuestionPageEl.appendChild(questionDiv);
