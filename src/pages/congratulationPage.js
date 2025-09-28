@@ -19,6 +19,7 @@ export function congratulationPage(quiz, pageWrapper, modal) {
   button.addEventListener('click', () => {
     quiz.currentQuestion = 0;
     quiz.points = 0;
+    quiz.streak = 0;
     quiz.questions.forEach((q) => {
       q.userAnswer = null;
       q.skipped = false;

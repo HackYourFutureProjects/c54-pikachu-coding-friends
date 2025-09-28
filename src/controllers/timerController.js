@@ -5,7 +5,7 @@
  * @param {HTMLElement} params.text
  * @param {number} params.circumference
  * @param {Function} params.onTimeout
- * @returns {{ start: Function, stop: Function, reset: Function }}
+ * @returns {{ stop: Function, reset: Function }}
  *   An API to control the timer:
  *   - `start()` — begins or resumes the countdown.
  *   - `stop()` — pauses the countdown.
